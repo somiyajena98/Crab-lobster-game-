@@ -1,0 +1,120 @@
+# Crab 1
+public class Crab extends Actor
+{
+/**
+* Act - do whatever the crab wants to do. This method is called whenever 
+* the 'Act' or 'Run' button gets pressed in the environment.
+*/
+public void act()
+{
+  moveandTurn();
+  eat();
+}
+
+public void moveandTurn()
+{
+  move(4);
+  if(Greenfoot.isKeyDown("L"))
+  {
+    turn(-3);
+  }
+  if(Greenfoot.isKeyDown("R"))
+  {
+    turn(3);
+  }
+}
+
+public void eat()
+{
+  Actor Worm;
+  Worm = getOneObjectAtOffset(0, 0, worm.class);
+  if(Worm != NULL)
+  {
+    World world;
+    world - getWorld();
+    world.removeObject(Worm);
+  }
+}
+
+#Lobster 
+public class lobster extends Actor 
+{
+ /**
+ *Act - do whatever the lobster wants to do. This method is called whenever
+ *the 'Act or 'Run' button gets pressed in the environment.
+ */
+ 
+ public void act()
+ {
+    move(3);
+    eat();
+    if(Greenfoot.getRandomNumber(100)<10)
+    {
+      turn(Greenfoot.getRandomNumber(90)-45);
+    }
+    if(getX() <= 5 || getX() >= getWorld().getWidth()-5)
+    {
+      turn(180);
+    }
+    if(getY() <= 5 || getY() >= getWorld().getHeight()-5)
+    {
+      turn(180);
+    }
+ }
+ 
+ public void eat()
+ {
+    Actor lobster;
+    lobster = getOneObjectAtOffset(0, 0, Crab.class);
+    if(lobster != null)
+    {
+      World world;
+      world = getWorld();
+      world.removeObject(lobster);
+    }
+ }
+ 
+ #Worm
+ public class worm extends Actor
+ {
+ /**
+ *Act - do whatever the worm wants to do. This method is called whenever
+ *the 'Act or 'Run' button gets pr4essed in the environment.
+ */
+ public void act()
+ {
+    turn(5);
+ }
+ }
+ 
+ #World(UI)
+ public class CrabWorld extends World
+ {
+ /** 
+ *Constructor for objects of class CrabWorld'
+ *
+ */
+ public CrabWorld()
+ {
+    super(560, 560, 1);
+    prepare();
+ }
+ 
+ /**
+ *Prepare the world for the start of the program. 
+ *That is: create the initial objects and add them to the world
+ */
+ private void prepare()
+ {
+    Crab crab = new Crab();
+    addObject(crab, 138, 205);
+    wom worm = new worm();
+    addObject(worm, 377, 22);
+    lobster lobster = new lobster();
+    addObject(lobster, 284, 281);
+  }
+  }
+ 
+ 
+  
+  
